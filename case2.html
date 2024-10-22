@@ -76,6 +76,23 @@
             top: 40px;
             left: 350px;
         }
+        button {
+            position: relative;
+            left: 600px;
+            top: -300px;
+            padding: 25px 25px;
+            border: none;
+            border-radius: 100%;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 10px 5px 10px gray;
+        }
+
+        button:disabled {
+            background-color: #bbb;
+        }
     </style>
 </head>
 <body>
@@ -90,22 +107,39 @@
     <div></div>
     <div></div>
 </section>
+<button id="startBtn">Start </button>
+<button id="stopBtn" disabled>Stop </button>
 
 <script>
     let colours = ["red", "green", "blue", "yellow", "pink", "hotpink"];
     let divs = document.querySelectorAll("body > div");
+    let startBtn = document.getElementById("startBtn");
+    let stopBtn = document.getElementById("stopBtn");
 
-    setInterval(() => {
-        let lastColor = colours.pop();
-        colours.unshift(lastColor);
+    let interval;
 
-        divs[0].style.backgroundColor = colours[0];
-        divs[1].style.backgroundColor = colours[1];
-        divs[2].style.backgroundColor = colours[2];
-        divs[3].style.backgroundColor = colours[3];
-        divs[4].style.backgroundColor = colours[4];
-        divs[5].style.backgroundColor = colours[5];
-    }, 2000);
+    startBtn.addEventListener("click", () => {
+        stopBtn.disabled = false;
+        startBtn.disabled = true;
+
+        interval = setInterval(() => {
+            let lastColor = colours.pop();
+            colours.unshift(lastColor);
+
+            divs[0].style.backgroundColor = colours[0];
+            divs[1].style.backgroundColor = colours[1];
+            divs[2].style.backgroundColor = colours[2];
+            divs[3].style.backgroundColor = colours[3];
+            divs[4].style.backgroundColor = colours[4];
+            divs[5].style.backgroundColor = colours[5];
+        }, 2000);
+    });
+
+    stopBtn.addEventListener("click", () => {
+        clearInterval(interval);
+        stopBtn.disabled = true;
+        startBtn.disabled = false;
+    });
 
 </script>
 </body>
