@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+
+        div:nth-child(1){
+            width: 80px;
+            height: 60px;
+            border-radius: 10px;
+            background: red;
+            position: relative;
+            top: 230px;
+            left: 350px;
+        }
+        div:nth-child(2){
+            width: 80px;
+            height: 60px;
+            border-radius: 10px;
+            background: green;
+            position: relative;
+            top: 260px;
+            left: 490px;
+        }
+        div:nth-child(3){
+            width: 80px;
+            height: 60px;
+            border-radius: 10px;
+            background: blue;
+            position: relative;
+            top: 200px;
+            left: 605px;
+        }
+        div:nth-child(4){
+            width: 80px;
+            height: 60px;
+            border-radius: 10px;
+            background: yellow;
+            position: relative;
+            top: 140px;
+            left: 720px;
+        }
+        div:nth-child(5){
+            width: 80px;
+            height: 60px;
+            border-radius: 10px;
+            background: pink;
+            position: relative;
+            top: 80px;
+            left: 835px;
+        }
+        div:nth-child(6){
+            width: 80px;
+            height: 60px;
+            border-radius: 10px;
+            background: hotpink;
+            position: relative;
+            top: 120px;
+            left: 970px;
+        }
+        section>div:nth-child(1){
+            width:700px;
+            height: 2px;
+            background: gray;
+            position: relative;
+            top: -55px;
+            left: 350px;
+        }
+        section>div:nth-child(2){
+            width: 700px;
+            height: 3px;
+            background: gray;
+            position: relative;
+            top: 40px;
+            left: 350px;
+        }
+    </style>
+</head>
+<body>
+
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<section>
+    <div></div>
+    <div></div>
+</section>
+
+<script>
+    let colours = ["red", "green", "blue", "yellow", "pink", "hotpink"];
+    let divs = document.querySelectorAll("body > div");
+
+    setInterval(() => {
+        let lastColor = colours.pop();
+        colours.unshift(lastColor);
+
+        divs[0].style.backgroundColor = colours[0];
+        divs[1].style.backgroundColor = colours[1];
+        divs[2].style.backgroundColor = colours[2];
+        divs[3].style.backgroundColor = colours[3];
+        divs[4].style.backgroundColor = colours[4];
+        divs[5].style.backgroundColor = colours[5];
+    }, 2000);
+
+</script>
+</body>
+</html>
