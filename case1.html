@@ -25,6 +25,23 @@
             top: 200px;
             left: 80%;
         }
+        button {
+            position: relative;
+            left: 50px;
+            top: -160px;
+            padding: 25px 25px;
+            border: none;
+            border-radius: 100%;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 10px 5px 10px gray;
+        }
+
+        button:disabled {
+            background-color: #bbb;
+        }
     </style>
 </head>
 <body>
@@ -55,20 +72,38 @@
 <section>
     <img src="assets/Animation%20-%201729572673123.gif">
 </section>
-
+<button id="startBtn">Start </button>
+<button id="stopBtn" disabled>Stop </button>
 <script>
-    let array = ["A", "B", "C", "D", "E", "F"];
 
-    setInterval(() => {
-        let last_value = array.pop();
-        array.unshift(last_value);
-        document.getElementsByTagName("h1")[0].innerHTML = array[0];
-        document.getElementsByTagName("h1")[1].innerHTML = array[1];
-        document.getElementsByTagName("h1")[2].innerHTML = array[2];
-        document.getElementsByTagName("h1")[3].innerHTML = array[3];
-        document.getElementsByTagName("h1")[4].innerHTML = array[4];
-        document.getElementsByTagName("h1")[5].innerHTML = array[5];
-    }, 3000);
+    let array = ["A", "B", "C", "D", "E", "F"];
+    let startBtn = document.getElementById("startBtn");
+    let stopBtn = document.getElementById("stopBtn");
+    let interval;
+
+    startBtn.addEventListener("click", () => {
+        stopBtn.disabled = false;
+        startBtn.disabled = true;
+
+        interval = setInterval(() => {
+            let lastValue = array.pop();
+            array.unshift(lastValue);
+
+            document.getElementsByTagName("h1")[0].innerHTML = array[0];
+            document.getElementsByTagName("h1")[1].innerHTML = array[1];
+            document.getElementsByTagName("h1")[2].innerHTML = array[2];
+            document.getElementsByTagName("h1")[3].innerHTML = array[3];
+            document.getElementsByTagName("h1")[4].innerHTML = array[4];
+            document.getElementsByTagName("h1")[5].innerHTML = array[5];
+        }, 3000);
+    });
+
+    stopBtn.addEventListener("click", () => {
+        clearInterval(interval);
+        stopBtn.disabled = true;
+        startBtn.disabled = false;
+    });
 </script>
+
 </body>
 </html>
